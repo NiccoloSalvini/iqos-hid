@@ -1,0 +1,90 @@
+{"t":"11:52:44.505","dir":"OUT","id":"0x3f","h":"08 c0 44 24 1e 00 00 00 9a","mark":"luminosita_alta_to_bassa"}
+{"t":"11:52:44.512","dir":"IN","id":"0x3f","h":"04 c0 c0 24 11","mark":"luminosita_alta_to_bassa"}
+{"t":"11:52:44.513","dir":"OUT","id":"0x3f","h":"04 c0 00 24 fc","mark":"luminosita_alta_to_bassa"}
+{"t":"11:52:44.517","dir":"IN","id":"0x3f","h":"08 c0 84 24 1e 00 00 00 00","mark":"luminosita_alta_to_bassa"}
+{"t":"11:53:37.273","dir":"OUT","id":"0x3f","h":"08 c0 44 24 64 00 00 00 34","mark":"luminosita_bassa_to_alta"}
+{"t":"11:53:37.277","dir":"IN","id":"0x3f","h":"04 c0 c0 24 11","mark":"luminosita_bassa_to_alta"}
+{"t":"11:53:37.277","dir":"OUT","id":"0x3f","h":"04 c0 00 24 fc","mark":"luminosita_bassa_to_alta"}
+{"t":"11:53:37.282","dir":"IN","id":"0x3f","h":"08 c0 84 24 64 00 00 00 ae","mark":"luminosita_bassa_to_alta"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 5a 0c 00 01 04 00 13 14 15 16 01 01 01 00 d5", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 8b 0e 00 01 04 00 04 01 01 01 01 01 01 00 45", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 47 0d 00 01 04 00 02 02 02 02 01 01 01 00 b9", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 b0 0f 00 01 04 00 07 01 01 01 01 01 01 00 7f", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 bb 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 5b", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 47 04 00 ff ff 00 da", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0c 00 00 00 b8", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0c 00 01 04 00 13 14 15 16 01 01 01 00 00 31", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0e 00 00 00 94", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0e 00 01 04 00 04 01 01 01 01 01 01 00 00 9e", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0d 00 00 00 ae", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0d 00 01 04 00 02 02 02 02 01 01 01 00 00 8f", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0f 00 00 00 82", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0f 00 01 04 00 07 01 01 01 01 01 01 00 00 f0", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0b 00 00 00 da", "mark": "vibrazione_off"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 00 67", "mark": "vibrazione_off"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 0e 0c 00 01 04 00 13 14 15 16 01 01 1d 00 76", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 df 0e 00 01 04 00 04 01 01 01 01 01 1d 00 e6", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 13 0d 00 01 04 00 02 02 02 02 01 01 1d 00 1a", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 e4 0f 00 01 04 00 07 01 01 01 01 01 1d 00 dc", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 bb 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 5b", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 47 04 00 ff ff 00 da", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0c 00 00 00 b8", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0c 00 01 04 00 13 14 15 16 01 01 1d 00 00 69", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0e 00 00 00 94", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0e 00 01 04 00 04 01 01 01 01 01 1d 00 00 c6", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0d 00 00 00 ae", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0d 00 01 04 00 02 02 02 02 01 01 1d 00 00 d7", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0f 00 00 00 82", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0f 00 01 04 00 07 01 01 01 01 01 1d 00 00 a8", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0b 00 00 00 da", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 00 67", "mark": "vibrazione_custom_tutti_on"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 0e 0c 00 01 04 00 13 14 15 16 01 01 1d 00 76", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 df 0e 00 01 04 00 04 01 01 01 01 01 1d 00 e6", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 13 0d 00 01 04 00 02 02 02 02 01 01 1d 00 1a", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 b0 0f 00 01 04 00 07 01 01 01 01 01 01 00 7f", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "12 c0 4b 04 bb 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 5b", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 47 04 00 ff ff 00 da", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0c 00 00 00 b8", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0e 00 00 00 94", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0d 00 00 00 ae", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0f 00 00 00 82", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "OUT", "id": "0x3f", "h": "08 c0 07 04 0b 00 00 00 da", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "04 c0 c3 04 ce", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0c 00 01 04 00 13 14 15 16 01 01 1d 00 00 69", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0e 00 01 04 00 04 01 01 01 01 01 1d 00 00 c6", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0d 00 01 04 00 02 02 02 02 01 01 1d 00 00 d7", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0f 00 01 04 00 07 01 01 01 01 01 01 00 00 f0", "mark": "vibrazione_custom_originale_111_0"}
+{"dir": "IN", "id": "0x3f", "h": "12 c0 8b 04 0b 00 00 00 00 2b 2b 2b 2b 01 01 01 00 00 67", "mark": "vibrazione_custom_originale_111_0"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 47 24 01 00 00 00 54","mark":"autostart_off"}
+{"dir":"IN","id":"0x3f","h":"04 c0 c3 24 2e","mark":"autostart_off"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 07 24 01 00 00 00 22","mark":"autostart_off"}
+{"dir":"IN","id":"0x3f","h":"08 c0 87 24 01 00 00 00 ce","mark":"autostart_off"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 47 24 01 01 00 00 3f","mark":"autostart_on"}
+{"dir":"IN","id":"0x3f","h":"04 c0 c3 24 2e","mark":"autostart_on"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 07 24 01 00 00 00 22","mark":"autostart_on"}
+{"dir":"IN","id":"0x3f","h":"08 c0 87 24 01 01 00 00 a5","mark":"autostart_on"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 44 04 02 ff 00 00 5a","mark":"blocco_on"}
+{"dir":"IN","id":"0x3f","h":"04 c0 c0 04 f1","mark":"blocco_on"}
+{"dir":"OUT","id":"0x3f","h":"04 c0 00 04 1c","mark":"blocco_on"}
+{"dir":"IN","id":"0x3f","h":"08 c0 84 04 02 ff 00 00 c0","mark":"blocco_on"}
+{"dir":"OUT","id":"0x3f","h":"08 c0 44 04 00 00 00 00 5d","mark":"blocco_off"}
+{"dir":"IN","id":"0x3f","h":"04 c0 c0 04 f1","mark":"blocco_off"}
+{"dir":"OUT","id":"0x3f","h":"04 c0 00 04 1c","mark":"blocco_off"}
+{"dir":"IN","id":"0x3f","h":"08 c0 84 04 00 00 00 00 c7","mark":"blocco_off"}
