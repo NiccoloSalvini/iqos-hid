@@ -20,6 +20,18 @@ Il backend (`api.uam.iot.iqos.com`, comandi su MQTT via AWS IoT) conserva anche 
 - `batteryInfo`: carica 100, temperatura 29, `batteryVoltage` 2124: coincide con il registro `0x181` letto nello stesso momento;
 - `associatedDevices.engine`: `DEV_TYPE_P1V41J_ENGINE`, firmware 102.6.0. La rete `c9` è quindi il **modulo di riscaldamento**: non va mai scritta.
 
+### Prova: modalità luci nascosta tramite il backend
+
+Il 14 ottobre 2026 è stata inviata al backend UAM, con la funzione della WebApp `updateUamSettings`, la richiesta `{"settingName":"ledIntensity","newValue":{"intensity":"STEALTH_MODE"}}`, non offerta per la ILUMA i ONE. Le scritture verso il dispositivo erano bloccate nel browser.
+
+- `POST /asset/{id}/device/actions/updateSetting` → `200` con un `requestId`;
+- nessun comando è arrivato alla IQOS; la luminosità riletta via USB è rimasta 100;
+- `GET /asset/{id}/device/request-status/{requestId}` → `status: FAILED` dopo 1 secondo, `errorCode: CM_ASYNC_REQUEST_FAILED`, «Issue when communicating with CM», `outerErrorMessage: INTERNAL_SERVER_ERROR`, `request.value: run-command`.
+
+Interpretazione (non verificata): il componente del backend che traduce le impostazioni in comandi per il dispositivo non ha una codifica di `STEALTH_MODE` per questo modello. Le modalità degli altri modelli non si ottengono passando dal server.
+
+Nota sul codice della WebApp: `checkUamRequestStatus` restituisce `{status: "PENDING"}` per qualunque risposta che non sia `SUCCESS`, `FAILED` o `CANCELED`, anche quando la richiesta non è partita. Per leggere lo stato vero bisogna chiamare l'endpoint con il client UAM (modulo 29063) e con l'`assetId` presente, cioè a dispositivo collegato.
+
 I quattro byte per evento nella tabella potrebbero quindi essere schemi di **vibrazione**, non animazioni LED: non è verificato.
 
 ## Trasporto
