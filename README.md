@@ -1,8 +1,8 @@
 # iqos-hid
 
-Ascolto passivo del canale USB di una **IQOS ILUMA** dal Mac (o da Linux/Windows), per capire cosa il dispositivo comunica al computer.
+Legge e cambia le impostazioni di una **IQOS ILUMA** via USB, dal terminale: luminosità (anche valori che l'app non offre), blocco, avvio automatico, vibrazione per evento.
 
-> English: passive listener for the USB HID channel exposed by IQOS ILUMA devices. It only reads, never writes. Notes on the descriptor below.
+> English: command-line tool to read and change IQOS ILUMA settings over USB HID. The protocol was captured from the official web app; see [PROTOCOL.md](PROTOCOL.md).
 
 Progetto indipendente, a scopo di studio. Non è affiliato né approvato da Philip Morris International. IQOS e ILUMA sono marchi dei rispettivi proprietari.
 
@@ -35,19 +35,36 @@ a1 01           Collection (Application)
 c0
 ```
 
-Un canale proprietario a pacchetti da 63 byte, con due report ID. Il protocollo applicativo non è documentato. Non c'è una porta seriale e su macOS il dispositivo viene preso dal driver HID di sistema, quindi `pyusb` non serve: si usa `hidapi`.
+Un canale proprietario a pacchetti da 63 byte. Il formato dei messaggi e i registri sono in [PROTOCOL.md](PROTOCOL.md). Su macOS il dispositivo viene preso dal driver HID di sistema, quindi `pyusb` non serve: si usa `hidapi`.
 
 ## Uso
 
 Serve [uv](https://docs.astral.sh/uv/), che installa da solo la dipendenza `hidapi`.
 
 ```sh
-./iqos_hid.py list                     # dispositivi trovati (seriale mascherato)
-./iqos_hid.py listen                   # stampa i report in arrivo, Ctrl+C per uscire
-./iqos_hid.py listen --seconds 60 --log sessione.jsonl
+./iqos_hid.py list                          # dispositivi trovati (seriale mascherato)
+./iqos_hid.py status                        # impostazioni attuali
+./iqos_hid.py set brightness 60             # 1-100; l'app offre solo 30 e 100
+./iqos_hid.py set autostart off
+./iqos_hid.py set lock on                   # e poi: set lock off
+./iqos_hid.py set vibration finito=on       # riscaldamento | pronto | quasi-finito | finito
+./iqos_hid.py listen --log sessione.jsonl   # ascolto passivo
 ```
 
-Senza stimoli il dispositivo resta in silenzio (30 s di prova: zero report), quindi il canale sembra a domanda e risposta. Mentre ascolti, prova comunque a inserire uno stick, premere il tasto, staccare e riattaccare il cavo, e annota cosa succede.
+```
+$ ./iqos_hid.py status
+luminosità      100%
+blocco          no
+avvio automatico on
+vibrazione riscaldamento on   LED 13 14 15 16
+vibrazione pronto        on   LED 04 01 01 01
+vibrazione quasi-finito  on   LED 02 02 02 02
+vibrazione finito        off  LED 07 01 01 01
+```
+
+Ogni `set` rilegge il valore dal dispositivo e stampa quello effettivo.
+
+Il dispositivo non manda nulla di sua iniziativa, quindi `listen` da solo resta muto.
 
 Su Linux può servire una regola udev per leggere `/dev/hidraw*` senza root:
 
@@ -57,14 +74,21 @@ SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2759", MODE="0660", TAG+="uaccess"
 
 ## Sicurezza
 
-Lo script **non scrive mai** sul dispositivo. Su un canale del genere passano probabilmente anche i comandi di aggiornamento firmware: mandare pacchetti a caso può bloccare la IQOS. Se vuoi contribuire con comandi, ricavali osservando il traffico degli strumenti ufficiali, non provando a caso.
+Lo script scrive **solo** nei registri che la WebApp ufficiale scrive, con lo stesso formato, e non ha un comando per scrivere registri arbitrari. Su questo canale passano probabilmente anche aggiornamento firmware e ripristino: mandare pacchetti a caso può bloccare la IQOS. Nuovi comandi vanno ricavati dal traffico degli strumenti ufficiali, non provando a caso.
+
+Testato su una sola IQOS ILUMA i ONE, firmware `0x0200`.
+
+## Lavori correlati
+
+[IQOS Scope](https://github.com/SabriEzzine/iqos-scope) è una dashboard WebHID che legge batteria, contatori e impostazioni dello stesso modello.
 
 ## Contribuire
 
 Sono utili soprattutto:
 
 - descrittori e `bcdDevice` di altri modelli (ILUMA, ILUMA i, PRIME, ONE), con l'output di `./iqos_hid.py list`;
-- log `--log` di eventi riconoscibili, con una nota su cosa stavi facendo.
+- catture della WebApp ufficiale su altri modelli o firmware;
+- il significato dei byte `p1..p4` nella tabella degli eventi (vedi [PROTOCOL.md](PROTOCOL.md)).
 
 Prima di condividere un log o un output, togli il numero di serie.
 

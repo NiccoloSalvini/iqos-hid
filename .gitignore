@@ -1,3 +1,4 @@
 *.jsonl
+!captures/*.jsonl
 __pycache__/
 .venv/
