@@ -7,7 +7,7 @@ Ricavato il 14 ottobre 2026 registrando il traffico WebHID della WebApp ufficial
 La WebApp non costruisce i comandi: li riceve dal backend IQOS e li inoltra alla IQOS. Analisi statica del bundle `iqos-connect.rrp-backend.com/static/js/main.275fcf4a.js` (con REA `analyze-javascript-application` più lettura mirata del codice):
 
 - le impostazioni passano per l'API cloud `/asset/{id}/device/actions/updateSetting`; i frame arrivano dal server con `request_id`, `transfer_data` e `token`, e il browser li mette in coda e li scrive con `sendReport`;
-- nel bundle sono cablati solo pochi frame fissi, tra cui il ping (`00C0010015`, cioè lettura del registro `0x005` su `0xC0`) e i suoi equivalenti su `0xC9`;
+- nel bundle sono cablati solo pochi frame fissi, tra cui il ping (`00C0010015`, cioè una lettura senza payload del registro `0x001` su `0xC0`, CRC compreso) e i suoi equivalenti su `0xC9`;
 - i nomi delle impostazioni che il backend sa gestire sono: `parentProtection` (blocco), `ledIntensity`, `extHapticProfile` (tabella eventi), `heatingVibration`, `uiHeatingVibration`, `batteryChargedVibration`, `uiBatteryChargedVibration`, `liftUpGesture`, `doubleTapGesture`, `autoStartHeating`, `pauseHeating`, `sessionProfiling`, `adaptiveExpManagement` (FlexBattery), `responsiveDrawProfile` (FlexPuff), `vapeCloudSize`, `engineJoule`.
 
 Quindi il significato dei registri, compresi i byte LED, non è nel JavaScript: si ricava solo dal traffico.
