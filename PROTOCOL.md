@@ -80,6 +80,48 @@ chk     = CRC-8(poly 0x07, init 0x7B) su voce[0:12]
 
 La WebApp riscrive sempre tutte e cinque le voci (`0C 0E 0D 0F 0B`), poi conferma con una scrittura da 4 byte `00 ff ff 00` sullo stesso registro, e infine le rilegge.
 
+## Frame estesi
+
+Durante la sincronizzazione la WebApp usa anche un secondo formato, riconoscibile dal bit 4 di `b1`:
+
+```
+[len] [net] [flags] [n] [payload n byte] [crc16 LE]
+```
+
+- `flags`: bit 7-6 operazione come sopra (`0x10` lettura, `0x50` scrittura, `0x90` risposta, `0xD0` conferma);
+- `n`: lunghezza del payload; i primi 2 byte del payload identificano il comando;
+- `crc16`: polinomio `0x755B`, init `0x0000`, non riflesso, su `flags` … fine payload, little-endian. Verificato su 17 frame.
+
+Le risposte più lunghe di un report arrivano segmentate sul report `0x40`.
+
+Comandi estesi visti (tutti in lettura, tranne l'orologio):
+
+| Comando | Contenuto |
+|---|---|
+| `00 04` | orologio: `da 07 01 01` (epoca 2010-01-01) + secondi dall'epoca, u32 LE, ora locale |
+| `00 04` in scrittura | la WebApp imposta l'orologio all'ora corrente |
+| `01 01` | contatori d'uso (34 byte) |
+| `00 00`, `00 01`, `00 02`, `01 00`, `02 00`, `00 06` | tabelle di configurazione, non decodificate |
+
+## Altri registri letti durante la sincronizzazione
+
+| Rete | `S` | Risposta | Interpretazione |
+|---|---|---|---|
+| `c0` | `0x00C` | 14 byte ASCII | numero di serie |
+| `c0` | `0x001` | 14 byte | il «ping» della WebApp; probabilmente versioni hardware/firmware |
+| `c0` | `0x181` | `4c 08 64 1d` | **ipotesi**: tensione batteria in unità da 2 mV (4248 mV), carica 100 %, temperatura 29 °C. Una seconda lettura dava `4b 08`, quindi il primo valore varia |
+| `c0` | `0x003` | `da 07 01 01` | epoca dell'orologio |
+| `c0` | `0x004` | u32 | orologio, secondi dal 2010-01-01 |
+| `c0` | `0x084` | `07 06 00 00` | sconosciuto |
+| `c9` | `0x009` + chiave | 14 byte per voce | **registro delle sessioni**: la WebApp legge le chiavi da `0x000` a `0x121`; le voci piene contengono data e ora della sessione e altri contatori |
+| `c9` | `0x089` + chiave `03`, `04` | `.. 01` | due impostazioni attive, non identificate |
+
+Le risposte da rete `c9` hanno `0x08` come byte di rete.
+
+In lettura su chiavi non supportate il dispositivo risponde con il bit 5 di `b1` acceso (`0xA4`, `0xA7`) e payload `02 00 00 00`: probabilmente un codice d'errore.
+
+La cattura della sincronizzazione non è pubblicata perché contiene il numero di serie e l'orario delle sessioni d'uso.
+
 ## Cose che non passano dal dispositivo
 
 Il nome del dispositivo («Rinomina») è salvato solo sull'account IQOS: nessun pacchetto USB.

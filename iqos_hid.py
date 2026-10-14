@@ -32,6 +32,7 @@ REG_BRIGHTNESS = 0x24 << 2      # u32, percentuale (WebApp: 30 bassa, 100 alta)
 REG_LOCK = 0x04 << 2            # u32, 0 sbloccato, 0x0000ff02 bloccato
 REG_AUTOSTART = 0x24 << 2 | 3   # tabella: chiave 0x01, valore nel byte 1
 REG_EVENTS = 0x04 << 2 | 3      # tabella degli eventi (vibrazione e LED)
+REG_BATTERY = 0x60 << 2 | 1     # ipotesi: tensione/2 mV u16, carica %, temperatura °C
 
 LOCKED = bytes([0x02, 0xFF, 0x00, 0x00])
 EVENTS = {0x0C: "riscaldamento", 0x0E: "pronto", 0x0D: "quasi-finito", 0x0F: "finito"}
@@ -147,6 +148,8 @@ def cmd_list(args):
 def cmd_status(args):
     iq = open_device()
     try:
+        b = iq.read(REG_BATTERY)
+        print(f"batteria        {b[2]}%  {int.from_bytes(b[:2], 'little') * 2} mV  {b[3]} °C  (decodifica ipotetica)")
         print(f"luminosità      {iq.read_u32(REG_BRIGHTNESS)}%")
         print(f"blocco          {'sì' if iq.read(REG_LOCK)[:4] == LOCKED else 'no'}")
         print(f"avvio automatico {'on' if iq.read(REG_AUTOSTART, bytes([1, 0, 0, 0]))[1] else 'off'}")

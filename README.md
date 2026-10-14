@@ -53,6 +53,7 @@ Serve [uv](https://docs.astral.sh/uv/), che installa da solo la dipendenza `hida
 
 ```
 $ ./iqos_hid.py status
+batteria        100%  4248 mV  28 °C  (decodifica ipotetica)
 luminosità      100%
 blocco          no
 avvio automatico on
