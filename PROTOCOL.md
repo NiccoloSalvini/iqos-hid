@@ -10,7 +10,17 @@ La WebApp non costruisce i comandi: li riceve dal backend IQOS e li inoltra alla
 - nel bundle sono cablati solo pochi frame fissi, tra cui il ping (`00C0010015`, cioè una lettura senza payload del registro `0x001` su `0xC0`, CRC compreso) e i suoi equivalenti su `0xC9`;
 - i nomi delle impostazioni che il backend sa gestire sono: `parentProtection` (blocco), `ledIntensity`, `extHapticProfile` (tabella eventi), `heatingVibration`, `uiHeatingVibration`, `batteryChargedVibration`, `uiBatteryChargedVibration`, `liftUpGesture`, `doubleTapGesture`, `autoStartHeating`, `pauseHeating`, `sessionProfiling`, `adaptiveExpManagement` (FlexBattery), `responsiveDrawProfile` (FlexPuff), `vapeCloudSize`, `engineJoule`.
 
-Quindi il significato dei registri, compresi i byte LED, non è nel JavaScript: si ricava solo dal traffico.
+Quindi il significato dei registri non è nel JavaScript: si ricava solo dal traffico.
+
+Il backend (`api.uam.iot.iqos.com`, comandi su MQTT via AWS IoT) conserva anche una copia decodificata dello stato del dispositivo, con questi nomi:
+
+- `ledIntensity.intensity`: `DAY_MODE` (100), `NIGHT_MODE` (30); il codice conosce anche `STEALTH_MODE`, non offerto per la ILUMA i ONE;
+- `uiHeatingVibration`: `preHeatVibration`, `heatingVibration`, `nearEndHeatVibration`, `heatingEndVibration`, `endChargeVibration`. Sono cinque, come le voci della tabella eventi (`0C 0E 0D 0F 0B`), quindi la tabella è probabilmente questa impostazione e `0x0B` è la fine della ricarica;
+- `extHapticProfile.hapticPattern` (altri modelli): `ALLEGRO`, `VIVALDI`, `BUBBLY`, `SIREN`, `CRESCENDO`, `DISABLED`;
+- `batteryInfo`: carica 100, temperatura 29, `batteryVoltage` 2124: coincide con il registro `0x181` letto nello stesso momento;
+- `associatedDevices.engine`: `DEV_TYPE_P1V41J_ENGINE`, firmware 102.6.0. La rete `c9` è quindi il **modulo di riscaldamento**: non va mai scritta.
+
+I quattro byte per evento nella tabella potrebbero quindi essere schemi di **vibrazione**, non animazioni LED: non è verificato.
 
 ## Trasporto
 
@@ -66,10 +76,10 @@ id 00 01 04 00 | p1 p2 p3 p4 | 01 01 | vib | 00 00
 | `0x0E` | pronto all'uso |
 | `0x0D` | quasi finito |
 | `0x0F` | esperienza finita |
-| `0x0B` | sconosciuto (`00 00 00 00 2b 2b 2b 2b`), riscritto sempre uguale |
+| `0x0B` | probabilmente fine ricarica (`endChargeVibration`), riscritto sempre uguale |
 
 - `vib`: `0x1D` vibrazione attiva, `0x01` spenta.
-- `p1..p4`: diversi per evento e mai cambiati dalla WebApp (`13 14 15 16`, `04 01 01 01`, `02 02 02 02`, `07 01 01 01`). Probabilmente l'animazione dei LED associata all'evento: **non verificato**.
+- `p1..p4`: diversi per evento e mai cambiati dalla WebApp (`13 14 15 16`, `04 01 01 01`, `02 02 02 02`, `07 01 01 01`). Schema di vibrazione o animazione LED dell'evento: **non verificato** (vedi sopra).
 
 In scrittura la voce è preceduta da un byte di controllo e perde l'ultimo zero:
 
